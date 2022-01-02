@@ -34,7 +34,7 @@ class Line {
    return (Line[])concat(splitLeft, splitRight);
   }
   
-  void stroke() {
+  void _stroke() {
     line(v1.x, v1.y, v2.x, v2.y);
   }
   

@@ -37,23 +37,23 @@ class Rectangle {
     float y = this.y + this.height/2;
     return new Vertex(x, y);
   }
-  
+
   Line topSide() {
     return new Line(topLeft(), topRight());
   }
-  
+
   Line rightSide() {
     return new Line(topRight(), bottomRight());
   }
-  
+
   Line bottomSide() {
     return new Line(bottomLeft(), bottomRight());
   }
-  
+
   Line leftSide() {
     return new Line(topLeft(), bottomLeft());
   }
-  
+
   Line[] sides() {
     Line[] res = new Line[4];
     res[0] = topSide();
@@ -62,11 +62,23 @@ class Rectangle {
     res[3] = leftSide();
     return res;
   }
-  
-  void stroke(){
-    Line[] rSides = sides(); 
+
+  void _stroke() {
+    Line[] rSides = sides();
     for (int i = 0; i < 4; i++) {
-       rSides[i].stroke();
+      rSides[i]._stroke();
     }
+  }
+
+  void fillGradient(color c1, color c2) {
+    strokeWeight(2);
+    colorMode(RGB);
+    for (int i = int(this.y); i <= int(this.y)+this.height; i++) {
+      float inter = map(i, int(this.y), int(this.y)+height, 0, 1);
+      color c = lerpColor(c1, c2, inter);
+      stroke(c);
+      line(this.x, i, this.x+this.width, i);
+    }
+    colorMode(HSB);
   }
 }
