@@ -7,7 +7,6 @@ import interfascia.*;
 GUIController c;
 IFButton b1, b2, b3, b4, b5;
 
-Circle circle;
 Rectangle r;
 boolean rainbow = false;
 color bg;
@@ -21,8 +20,6 @@ void setup() {
   c1 = #0000ffff;
   c2 = #0000ffff;
 
-
-  circle = new Circle();
   r = new Rectangle(90, 90, 650, 650);
 
   c = new GUIController (this);
@@ -92,7 +89,7 @@ void draw() {
   r._stroke();
 
   // cascade rectangles
-  int numCascades = 10;
+  int numCascades = 6;
   Line ctl = new Line(r.centroid(), r.topLeft());
   float cascadeStep = ctl.length()/numCascades/2;
   for (int i = 1; i < numCascades+2; i++) {
@@ -102,7 +99,7 @@ void draw() {
   }
 
   PImage img;
-  img = loadImage("me2.jpeg");
+  img = loadImage("tracy.jpeg");
   image(img, 89*3, 89*3, 652-89*4, 652-89*4);
 }
 
@@ -112,19 +109,23 @@ void actionPerformed (GUIEvent e) {
   if (label == "Blue") {
     bg = color(#646482);
     stroke(#649B64);
-    tint(#0099CC, 240); // blue
+    tint(#CC5252, 240); // red
+    c1 = #5a5a75;
+    c2 = #73738e;
   } else if (label == "Green") {
     bg = color(#649B64);
     stroke(#646482);
-    tint(#CC5252, 240); // red
+
+    tint(#0099CC, 240); // blue
+
     c1 = #5a8b5a;
     c2 = #73a573;
   } else if (label == "White") {
     bg = color(230);
     stroke(0);
     tint(#0099CC, 240);  // blue
-    c1 = #0000ffff;
-    c2 = #0000ffff;
+    c2 = #e5e5e5;
+    c1 = #b2b2b2;
   } else if (label == "Red") {
     bg = color(#CC5252);
     stroke(0);
